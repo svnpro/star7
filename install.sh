@@ -1,4 +1,5 @@
 #!/bin/bash
+
 echo "🚀 Menginstal bot Telegram SHC di VPS..."
 
 # Update & install dependencies
@@ -11,15 +12,22 @@ pip3 install python-telegram-bot
 sudo mkdir -p /opt/telegram_shc_bot
 cd /opt/telegram_shc_bot
 
-# Unduh file dari GitHub (GANTI dengan repo Anda)
+# Unduh dan ekstrak file ZIP dari GitHub
 GITHUB_REPO="https://raw.githubusercontent.com/svnpro/star7/main"
+wget "$GITHUB_REPO/telegram_shc_bot.zip" -O telegram_shc_bot.zip
+unzip -o telegram_shc_bot.zip
+rm telegram_shc_bot.zip  # Hapus ZIP setelah ekstraksi
 
-wget "$GITHUB_REPO/telegram_shc_bot.py" -O telegram_shc_bot.py
-wget "$GITHUB_REPO/telegram_shc_bot.service" -O /etc/systemd/system/telegram_shc_bot.service
+# Set permission agar bot bisa dieksekusi
+chmod +x telegram_shc_bot.py
 
-# Reload systemd dan aktifkan service
+# Konfigurasi service systemd
+sudo cp telegram_shc_bot.service /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable telegram_shc_bot
 sudo systemctl start telegram_shc_bot
 
 echo "✅ Instalasi selesai! Bot sedang berjalan..."
+
+# Cek status bot setelah instalasi
+sudo systemctl status telegram_shc_bot
