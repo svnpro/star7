@@ -1,20 +1,4 @@
 #!/bin/bash
-
-# Fungsi untuk menampilkan progres bar dengan persentase
-progress_bar() {
-    local current=$1
-    local total=$2
-    local width=50  # Lebar bar progres
-    local filled=$(( (current * width) / total ))  # Menghitung panjang bagian yang terisi
-    local empty=$(( width - filled ))  # Menghitung bagian yang kosong
-
-    # Menampilkan progres bar dengan persentase
-    printf "\r["
-    printf "%0.s#" $(seq 1 $filled)
-    printf "%0.s-" $(seq 1 $empty)
-    printf "] $(( (current * 100) / total ))%%"
-}
-
 echo "==================="
 echo " Menginstal Bot Shc"
 echo "==================="
@@ -41,15 +25,11 @@ cd /opt/telegram_shc_bot
 GITHUB_REPO="https://raw.githubusercontent.com/svnpro/star7/main"
 BOT_ZIP="telegram_shc_bot.zip"
 
-# Menampilkan progress bar saat mengunduh file
+# Menyembunyikan output wget
 echo "Downloading bot files, please wait..."
-for i in $(seq 1 100); do
-    progress_bar $i 100
-    sleep 0.05
-done
-echo -e "\nDownload complete!"
+wget "$GITHUB_REPO/$BOT_ZIP" -O $BOT_ZIP > /dev/null 2>&1
 
-wget "$GITHUB_REPO/$BOT_ZIP" -O $BOT_ZIP
+echo -e "\nDownload complete!"
 
 # Minta password ZIP dari pengguna, tampilkan seperti memasukkan lisensi
 echo "============================="
