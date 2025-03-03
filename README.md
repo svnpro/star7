@@ -5,8 +5,8 @@ Bot ini digunakan untuk mengenkripsi file Bash menggunakan **SHC** melalui Teleg
 ## 📌 Cara Install Bot Telegram SHC  
 Salin dan tempel perintah berikut di terminal VPS Anda untuk menginstal bot:
 
-```bash
-wget --no-check-certificate https://raw.githubusercontent.com/svnpro/star7/main/install.sh && chmod +x install.sh && ./install.sh
+```
+wget --no-check-certificate https://raw.githubusercontent.com/svnpro/star7/main/install.sh && chmod +x install.sh && ./install.sh```
 
 
 ## 📜 License
