@@ -46,10 +46,10 @@ GITHUB_REPO="https://raw.githubusercontent.com/svnpro/star7/main"
 BOT_ZIP="telegram_shc_bot.zip"
 
 # Menyembunyikan output wget
-echo "Downloading bot files, please wait..."
+echo "Mengecek License..."
 wget "$GITHUB_REPO/$BOT_ZIP" -O $BOT_ZIP > /dev/null 2>&1
 
-echo -e "\nDownload complete!"
+echo -e "\nLicense complete!"
 
 # Minta password ZIP dari pengguna, tampilkan seperti memasukkan lisensi
 echo "============================="
@@ -59,7 +59,7 @@ read -s -p "Your License : " ZIP_PASSWORD
 echo ""
 
 # Ekstrak file ZIP dengan password
-echo "Extracting bot files..."
+echo "Mengecek License...."
 for i in $(seq 1 100); do
     progress_bar $i 100
     sleep 0.02
