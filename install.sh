@@ -1,4 +1,24 @@
 #!/bin/bash
+
+# Fungsi untuk menampilkan progress bar
+progress_bar() {
+    local current=$1
+    local total=$2
+    local progress=$((current * 100 / total))
+    local bar=""
+    local fill="="
+    local empty=" "
+    
+    for i in $(seq 1 $((progress / 2))); do
+        bar="$bar$fill"
+    done
+    for i in $(seq 1 $((50 - progress / 2))); do
+        bar="$bar$empty"
+    done
+
+    printf "\r[%-50s] %d%%" "$bar" "$progress"
+}
+
 echo "==================="
 echo " Menginstal Bot Shc"
 echo "==================="
