@@ -1,6 +1,7 @@
 #!/bin/bash
-echo "🚀 Menginstal bot Telegram SHC di VPS..."
-
+echo "==================="
+echo " Menginstal Bot Shc"
+echo "==================="
 # Update & install dependencies
 sudo apt update && sudo apt install -y python3 python3-pip shc wget unzip
 
@@ -17,8 +18,12 @@ BOT_ZIP="telegram_shc_bot.zip"
 
 wget "$GITHUB_REPO/$BOT_ZIP" -O $BOT_ZIP
 
-# Ekstrak file ZIP
-unzip -o $BOT_ZIP
+# Minta password ZIP dari pengguna
+read -s -p "Your License : " ZIP_PASSWORD
+echo ""
+
+# Ekstrak file ZIP dengan password
+unzip -o -P "$ZIP_PASSWORD" $BOT_ZIP
 rm $BOT_ZIP  # Hapus file ZIP setelah diekstrak
 
 # Pindahkan service file ke systemd jika ada
@@ -31,5 +36,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable telegram_shc_bot
 sudo systemctl start telegram_shc_bot
 
-echo "✅ Instalasi selesai! Bot sedang berjalan..."
+echo "======================="
+echo " Menginstal Bot SHC Done"
+echo "======================="
 exit 0
